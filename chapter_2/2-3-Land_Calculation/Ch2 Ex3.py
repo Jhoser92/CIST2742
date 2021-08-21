@@ -1,5 +1,8 @@
-# This program calculates the total acres
-# in a tract of land.
+# 2-3 Land Calculation
+# One acre of land is equivalent to 43,560 square feet.
+# Write a program that asks the user to enter the total square feet in a tract
+# of land and calculates the number of acres in the tract.
+# Hint: Divide the amount entered by 43,560 to get the number of acres.
 
 # Total acres in square feet.
 acres = 43560
