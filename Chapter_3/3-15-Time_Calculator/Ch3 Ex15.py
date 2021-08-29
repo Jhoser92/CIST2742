@@ -23,13 +23,20 @@ day = 86400
 seconds = int(input('Enter the number of seconds: '))
 
 # Calculate the time.
-if seconds >= minute:
-    total = seconds / minute
-    print('There is', format(total, '.3f'), 'minutes in', seconds, 'seconds')
+if seconds >= minute and seconds < hour:
+    totalm = seconds / minute
+    print('There is', format(totalm, '.3f'), 'minutes in', seconds, 'seconds')
 else:
-    if seconds >= hour:
-        total = seconds / hour
-        print('There is', format(total, '.3f'), 'hours in', seconds, 'seconds')
+    if seconds >= hour and seconds < day:
+        totalm = seconds / minute
+        totalh = seconds / hour
+        print('There is', format(totalh, '.3f'), 'hours in', seconds, 'seconds')
+        print('There is', format(totalm, '.3f'), 'minutes in', seconds, 'seconds')
     else:
-        total = seconds / day
-        print('There is', format(total, '.3f'), 'days in', seconds, 'seconds')
+        if seconds >= day:
+            totalm = seconds / minute
+            totalh = seconds / hour
+            totald = seconds / day
+            print('There is', format(totald, '.3f'), 'days in', seconds, 'seconds')
+            print('There is', format(totalh, '.3f'), 'hours in', seconds, 'seconds')
+            print('There is', format(totalm, '.3f'), 'minutes in', seconds, 'seconds')
