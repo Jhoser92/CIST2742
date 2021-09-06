@@ -9,9 +9,12 @@
 # **
 # *
 
+# Set the values.
 BASE_SIZE = 8
 FINAL_COL = 0
 INC = -1
+
+# Wrtie the nested loops.
 for c in range(BASE_SIZE, FINAL_COL, INC):
     for r in range(c):
         print("*", end='')
