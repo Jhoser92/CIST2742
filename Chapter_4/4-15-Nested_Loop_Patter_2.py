@@ -7,8 +7,10 @@
 #       #    #
 #       #     #
 
+# Set the values.
 BASE_SIZE = 7
 
+# Write the nested loops.
 for r in range(BASE_SIZE):
     print('#', end='')
     for c in range(r):
