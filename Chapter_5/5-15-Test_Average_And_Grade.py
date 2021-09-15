@@ -20,7 +20,7 @@
 
 # Main function
 def main():
-    # Get the test scores and call the determine_grade function.
+    # Get the test scores and call the functions.
     test1 = int(input('Enter the first test score: '))
     determine_grade(test1)
     test2 = int(input('Enter the second test score: '))
