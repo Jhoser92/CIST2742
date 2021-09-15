@@ -20,44 +20,38 @@
 
 # Main function
 def main():
-    # Get the test scores
+    # Get the test scores and call the determine_grade function.
     test1 = int(input('Enter the first test score: '))
+    determine_grade(test1)
     test2 = int(input('Enter the second test score: '))
+    determine_grade(test2)
     test3 = int(input('Enter the third test score: '))
+    determine_grade(test3)
     test4 = int(input('Enter the fourth test score: '))
+    determine_grade(test4)
     test5 = int(input('Enter the fifth test score: '))
-    print()
-    determine_grade(test1, test2, test3, test4, test5)
+    determine_grade(test5)
     print()
     calc_average(test1, test2, test3, test4, test5)
 
 # Define the determine_grade function
-def determine_grade(test1, test2, test3, test4, test5):
-    for test in test1, test2, test3, test4, test5:
-        if test >= 90 and test <= 100:
-            print('Your test score of', test, 'is an A')
-        elif test >= 80 and test < 90:
-            print('Your test score of', test, 'is a B')
-        elif test >= 70 and test < 80:
-            print('Your test score of', test, 'is a C')
-        elif test >= 60 and test < 70:
-            print('Your test score of', test, 'is a D')
+def determine_grade(score):
+        if score >= 90 and score <= 100:
+            print('Grade: A')
+        elif score >= 80 and score < 90:
+            print('Grade: B')
+        elif score >= 70 and score < 80:
+            print('Grade: C')
+        elif score >= 60 and score < 70:
+            print('Grade: D')
         else:
-            print('Your test score of', test, 'is an F')
+            print('Grade: F')
 
 # Define the calc_average function.
 def calc_average(score1, score2, score3, score4, score5):
-    total_avg = (score1 + score2 + score3 + score4 + score5) / 5
-    if total_avg >= 90 and total_avg <= 100:
-        print('Your average letter grade is an A')
-    elif total_avg >=80 and total_avg < 90:
-        print('Your average letter grade is a B')
-    elif total_avg >=70 and total_avg < 80:
-        print('Your average letter grade is a C')
-    elif total_avg >=60 and total_avg < 70:
-        print('Your average letter grade is a D')
-    else:
-        print('Your average letter grade is F')
+    avg = (score1 + score2 + score3 + score4 + score5) / 5
+    print('Average')
+    determine_grade(avg)
 
 # Call the main function.
 main()
