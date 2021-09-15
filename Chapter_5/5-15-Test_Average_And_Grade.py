@@ -32,7 +32,7 @@ def main():
     test5 = int(input('Enter the fifth test score: '))
     determine_grade(test5)
     print()
-    calc_average(test1, test2, test3, test4, test5)
+    calc_average(total = test1 + test2 + test3 + test4 + test5)
 
 # Define the determine_grade function
 def determine_grade(score):
@@ -48,8 +48,8 @@ def determine_grade(score):
             print('Grade: F')
 
 # Define the calc_average function.
-def calc_average(score1, score2, score3, score4, score5):
-    avg = (score1 + score2 + score3 + score4 + score5) / 5
+def calc_average(total):
+    avg = total / 5
     print('Average')
     determine_grade(avg)
 
