@@ -11,7 +11,7 @@
 # When that happens, the other player is the winner.
 # (It is possible that both players' hands will simultaneously exceed 21 points, in which case neither player wins.)
 # The program should repeat until all the cards have been dealt from the deck.
-# If a player id dealt an ace, the program should decide the value of the card according to the following rule:
+# If a player is dealt an ace, the program should decide the value of the card according to the following rule:
 # The ace will be worth 11 points, unless that makes the players' hand exceed 21 points.
 # In that case, the ace will be worth 1 point.
 
@@ -64,50 +64,89 @@ def deal_cards(deck):
     # Initialize an accumulator for the hand value.
     hand_value1 = 0
     hand_value2 = 0
+    total_score1 = 0
+    total_score2 = 0
+    print()
+    print('Game Start!')
+    print()
 
     # Deal the cards and accumulate their values.
     for count in range(len(deck)//2):
+        # Get the key and value from the deck dictionary
+        # for player 1 and show the card.
         card1, value1 = random.choice(list(deck.items()))
         print('Player 1 Card: ', card1)
-        total_value1 = value1
         del deck[card1]
-        if card1.startswith('Ace') and (11 + total_value1) < 21:
+
+        # Determine the value of the ace for card1.
+        if card1.startswith('Ace') and (11 + hand_value1) < 21:
             value1 = 11
-            total_value1 = value1
-        hand_value1 += total_value1
+
+        # Add the total value of player 1 hand.
+        hand_value1 += value1
+
+        # Get the key and value from the deck dictionary
+        # for player 2 and show the card.
         card2, value2 = random.choice(list(deck.items()))
         print('Player 2 Card: ', card2)
-        total_value2 = value2
         del deck[card2]
-        if card2.startswith('Ace') and (11 + total_value2) < 21:
+
+        # Determine the value of ace for card2.
+        if card2.startswith('Ace') and (11 + hand_value2) < 21:
             value2 = 11
-            total_value2 = value2
-        hand_value2 += total_value2
-        print(hand_value1, hand_value2)
-        if hand_value1 > 21 and hand_value2 <= 21:
+
+        # Add the total value of player 2 hand.
+        hand_value2 += value2
+
+        # Print the values for player 1 and player 2 and add them to the total.
+        print('-P1: ', hand_value1, 'P2: ', hand_value2, '-')
+        total_score1 += hand_value1
+        total_score2 += hand_value2
+
+        # Determine the winner for the round and reset the values.
+        if hand_value1 >= 21 and hand_value2 < 21:
             print()
-            print('Player 1 is the winner!')
+            print('Player 1 wins this round!')
             print()
-        elif hand_value2 > 21 and hand_value1 <= 21:
+            hand_value1 = 0
+            hand_value2 = 0
+        elif hand_value2 >= 21 and hand_value1 < 21:
             print()
-            print('Player 2 is the winner!')
+            print('Player 2 wins this round!')
             print()
-        elif hand_value1 > 21 and hand_value2 > 21:
+            hand_value1 = 0
+            hand_value2 = 0
+        elif hand_value1 >= 21 and hand_value2 >= 21:
             print()
-            print('Neither player wins.')
+            print('Neither player wins this round.')
             print()
-        else:
-            print()
-            print('Round Continues')
-            print()
-    print('Player 1 Score: ', hand_value1)
-    print('Player 2 Score: ', hand_value2)
-    if hand_value1 > hand_value2:
+            hand_value1 = 0
+            hand_value2 = 0
+
+    # Let the player know when there are no more cards left.
+    if len(deck) == 0:
         print()
-        print('Player 1 Wins!')
-    elif hand_value2 > hand_value1:
+        print('No more cards left to draw.')
         print()
-        print('Player 2 Wins!')
+        print('Game Over!')
+        print()
+    else:
+        print()
+        print('Round Continues')
+        print()
+
+    # Print the overall scores.
+    print('-Overall Scores-')
+    print('Player 1 Score: ', total_score1)
+    print('Player 2 Score: ', total_score2)
+
+    # Determine the overall results of the game.
+    if total_score1 > total_score2:
+        print()
+        print('Player 1 wins the game!')
+    elif total_score2 > total_score1:
+        print()
+        print('Player 2 wins the game!')
     else:
         print()
         print('Its a TIE!')
