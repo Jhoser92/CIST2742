@@ -1,4 +1,4 @@
-# 9-3 File Encryption and Decryption
+# 9-3-2 File Encryption and Decryption
 
 # Write a program that uses a dictionary to assign "codes" to each letter of the alphabet.
 # For example:
@@ -11,6 +11,8 @@
 # character in the first file.
 # Write a second program that opens an encrypted file and displays its decrypted
 # contents on the screen.
+
+# Make a dictionary for codes.
 codes = {'A': '~', 'B': '!', 'C': '@', 'D': '#', 'E': '$', 'F': '%', 'G': '^', 'H': '&',
          'I': '*', 'J': '(', 'K': ')', 'L': '_', 'M': '+', 'N': '{', 'O': '}', 'P': ':',
          'Q': '"', 'R': '<', 'S': '>', 'T': '?', 'U': '`', 'V': '1', 'W': '2', 'X': '3',
@@ -26,23 +28,34 @@ codes = {'A': '~', 'B': '!', 'C': '@', 'D': '#', 'E': '$', 'F': '%', 'G': '^', '
 
 # Main function
 def main():
+    # Open text file.
     infile = open('test1.txt', 'r')
 
+    # Read file contents and strip \n.
     file_text = infile.readline()
     file_text = file_text.rstrip('\n')
+
+    # Print the file text.
     while file_text != '':
         print()
         print(file_text)
         print()
+
+        # Decrypt the file contents and print results.
         for ch in file_text:
             for key, value in codes.items():
                 if ch == value:
-                    print(key)
+                    print(key, end='')
             if ch == ' ':
                 print(' ')
+
+        # Read the next line in the file.
         print()
         file_text = infile.readline()
         print()
+
+    # Close the file.
     infile.close()
 
+# Call the main function.
 main()
