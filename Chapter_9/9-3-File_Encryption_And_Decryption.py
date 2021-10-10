@@ -11,32 +11,51 @@
 # character in the first file.
 # Write a second program that opens an encrypted file and displays its decrypted
 # contents on the screen.
-codes = { 'A':'~', 'a':'`', 'B':'!', 'b':'1', 'C':'@', 'c':'2', 'D':'#', 'd':'3', 'E':'$',
-          'e':'4', 'F':'%', 'f':'5', 'G':'^', 'g':'6', 'H':'&', 'h':'7', 'I':'*', 'i':'8',
-          'J':'(', 'j':'9', 'K':')', 'k':'0', 'L':'_', 'l':'-', 'M':'+', 'm':'=', 'N':'{',
-          'n':'[', 'O':'}', 'o':']', 'P':'|', 'p':':', 'Q':';', 'q':"'", 'R':'"', 'r':'<',
-          'S':',', 's':'>', 'T':'.', 't':'/', 'U':'?', 'u':'?!', 'V':'>@', 'v':'<#', 'W':"'$",
-          'w':':%', 'X':'}^', 'x':'{&', 'Y':'+*', 'y':'_(', 'Z':'_(', 'z':'()', ' ':' ',
-          '1':'#!', '2':'#@', '3':'##', '4':'#$', '5':'#%', '6':'#^', '7':'#&', '8':'#*',
-          '9':'#(', '0':'#)', '.':'.. '}
 
+# Make a dictionary for codes.
+codes = {'A': '~', 'B': '!', 'C': '@', 'D': '#', 'E': '$', 'F': '%', 'G': '^', 'H': '&',
+         'I': '*', 'J': '(', 'K': ')', 'L': '_', 'M': '+', 'N': '{', 'O': '}', 'P': ':',
+         'Q': '"', 'R': '<', 'S': '>', 'T': '?', 'U': '`', 'V': '1', 'W': '2', 'X': '3',
+         'Y': '4', 'Z': '5',
+
+         'a': '6', 'b': '7', 'c': '8', 'd': '9', 'e': '0', 'f': '-', 'g': '=', 'h': '[',
+         'i': ']', 'j': ';', 'k': "'", 'l': ',', 'm': '.', 'n': '/', 'o': 'A', 'p': 'B',
+         'q': 'C', 'r': 'D', 's': 'E', 't': 'F', 'u': 'G', 'v': 'H', 'w': 'I', 'x': 'J',
+         'y': 'K', 'z': 'L',
+
+         '1': 'M', '2': 'N', '3': 'O', '4': 'P', '5': 'Q', '6': 'R', '7': 'S', '8': 'T',
+         '9': 'U', '0': 'V', '.': 'W',  ' ': '  '}
+
+# Main function
 def main():
+    # Open text file to read from.
     infile = open('test.txt', 'r')
+    # Open another file to write to.
     writefile = open('test1.txt', 'w')
 
+    # Read file contents and strip \n.
     file_text = infile.readline()
     file_text = file_text.rstrip('\n')
+
+    # Print file text.
     while file_text != '':
         print(file_text)
+
+        # Convert text to encryption and write onto another file.
         for ch in file_text:
             if ch in codes:
                 value = codes.get(ch)
                 print(value, end='')
                 writefile.write(value + '')
+
+        # Read the next line in the file.
         print()
         file_text = infile.readline()
         writefile.write('\n')
+
+    # Close the files.
     writefile.close()
     infile.close()
 
+# Call the main function.
 main()
